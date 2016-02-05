@@ -15,7 +15,7 @@ class LocalTest extends PHPUnit_Extensions_SeleniumTestCase
     {
         $this->open('http://localhost/tests/simpleTests.html');
         $this->assertTrue(1===1);
-        $this->assertTitle('Google');
+        $this->assertTitle('phpunit selenium test');
     }
 
 }
