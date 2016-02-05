@@ -7,13 +7,13 @@ class GoogleTest extends PHPUnit_Extensions_SeleniumTestCase
         $this->setHost('localhost');
         $this->setPort(4444);
         $this->setBrowser('firefox');
-        $this->setBrowserUrl('http://localhost');
+        $this->setBrowserUrl('http://www.google.nl');
         $this->shareSession(true);
     }
  
     public function testLoadPage()
     {
-        $this->open('http://localhost/tests/simpleTests.html');
+        $this->open('http://www.google.nl');
         $this->assertTrue(1===1);
         $this->assertTitle('Google');
     }

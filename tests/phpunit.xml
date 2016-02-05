@@ -4,6 +4,7 @@
   <testsuites>
     <testsuite name="simpleTest">
       <file>tests/simpleTest.php</file>
+      <file>tests/simple2Test.php</file>
     </testsuite>
   </testsuites>
 </phpunit>

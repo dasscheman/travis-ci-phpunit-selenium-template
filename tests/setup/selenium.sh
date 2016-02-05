@@ -1,26 +1,33 @@
 serverUrl='http://127.0.0.1:4444'
-serverFile=selenium-server-standalone-2.35.0.jar
-firefoxUrl=http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/21.0/linux-x86_64/en-US/firefox-21.0.tar.bz2
-firefoxFile=firefox.tar.bz2
+serverFile=selenium-server-standalone-2.50.1.jar
+
 phpVersion=`php -v`
 
-pear channel-discover pear.phpunit.de
-pear install phpunit/PHP_Invoker
-pear install phpunit/DbUnit
-pear install phpunit/PHPUnit_Selenium
-pear install phpunit/PHPUnit_Story
+composer install
 
-
-echo "Download Firefox"
-wget $firefoxUrl -O $firefoxFile
-tar xvjf $firefoxFile
+echo "check firefox version"
+firefox --version
 
 echo "Starting xvfb"
 echo "Starting Selenium"
 if [ ! -f $serverFile ]; then
-    wget http://selenium.googlecode.com/files/$serverFile
+    wget http://selenium-release.storage.googleapis.com/2.50/$serverFile
 fi
+
+export DISPLAY=:99.0
+
+## You can start the selenium in two ways. The second method prints all selenium 
+## server logs in travis. This might give long logs errors. Therefore the first 
+## method is preferred. The second one might be convenient when debugging.
+# 1:
 sudo xvfb-run java -jar $serverFile > /tmp/selenium.log &
+
+# 2:
+#sh -e /etc/init.d/xvfb start
+#sleep 3
+#sudo java -jar $serverFile -port 4444 > /tmp/selenium.log &
+
+sleep 3
 
 wget --retry-connrefused --tries=60 --waitretry=1 --output-file=/dev/null $serverUrl/wd/hub/status -O /dev/null
 if [ ! $? -eq 0 ]; then
