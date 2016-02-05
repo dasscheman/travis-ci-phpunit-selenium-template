@@ -11,7 +11,7 @@ firefox --version
 echo "Starting xvfb"
 echo "Starting Selenium"
 if [ ! -f $serverFile ]; then
-    wget http://selenium-release.storage.googleapis.com/2.50/$serverFile
+    wget http://selenium-release.storage.googleapis.com/2.5asdf/$serverFile
 fi
 
 export DISPLAY=:99.0
@@ -32,6 +32,7 @@ sleep 3
 wget --retry-connrefused --tries=60 --waitretry=1 --output-file=/dev/null $serverUrl/wd/hub/status -O /dev/null
 if [ ! $? -eq 0 ]; then
     echo "Selenium Server not started"
+    exit 1
 else
     echo "Finished setup"
 fi
