@@ -13,7 +13,7 @@ class LocalTest extends PHPUnit_Extensions_SeleniumTestCase
  
     public function testLoadPage()
     {
-        $this->open('http://localhost/tests/simpleTests.html');
+        $this->open('http://localhost/tests/simpleTest.html');
         $this->assertTrue(1===1);
         $this->assertTitle('phpunit selenium test');
     }
