@@ -11,7 +11,7 @@ firefox --version
 echo "Starting xvfb"
 echo "Starting Selenium"
 if [ ! -f $serverFile ]; then
-    wget http://selenium-release.storage.googleapis.com/2.5asdf/$serverFile
+    wget http://selenium-release.storage.googleapis.com/2.50/$serverFile
 fi
 
 export DISPLAY=:99.0
